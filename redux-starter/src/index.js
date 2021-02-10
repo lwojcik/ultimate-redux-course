@@ -1,138 +1,151 @@
-import {
-  bugAdded,
-  bugResolved,
-} from './actions';
-import store from './store';
+import store from './customStore';
+import * as actions from './actions';
 
-const unsubscribe = store.subscribe(() => {
-  console.log('Store changed!', store.getState());
-}); // returns unsubscribe function
+store.subscribe(() => {
+  console.log("Store changed!");
+});
 
-store.dispatch(bugAdded("Bug 1"));
-
-store.dispatch(bugResolved(1));
-// unsubscribe();
-
-// store.dispatch({
-//   type: actions.BUG_REMOVED,
-//   payload: {
-//     id: 1,
-//   }
-// })
+store.dispatch(actions.bugAdded("Bug 1"));
 
 console.log(store.getState());
 
+// import {
+//   bugAdded,
+//   bugResolved,
+// } from './actions';
+// import store from './store';
 
-// const recipe = {
-//   name: "Spaghetti Bolognese",
-//   ingredients: ["egg", "salt"],
-// }
+// console.log(store)
 
-// const added = {
-//   ...recipe,
-//   ingredients: [...recipe.ingredients, "cream"]
-// };
+// const unsubscribe = store.subscribe(() => {
+//   console.log('Store changed!', store.getState());
+// }); // returns unsubscribe function
 
-// const updated = {
-//   ...recipe,
-//   ingredients: recipe.ingredients.map(ingredient =>
-//     ingredient === "egg" ? "egg white" : ingredient
-//   )
-// };
+// store.dispatch(bugAdded("Bug 1"));
 
-// const removed = {
-//   ...recipe,
-//   ingredients: recipe.ingredients.filter(ingredient => ingredient !== "egg")
-// };
-// // import {
-// //   pipe,
-// // } from 'lodash/fp';
+// store.dispatch(bugResolved(1));
+// // unsubscribe();
 
-// // const input = {
-// //   tag: "JAVASCRIPT"
+// // store.dispatch({
+// //   type: actions.BUG_REMOVED,
+// //   payload: {
+// //     id: 1,
+// //   }
+// // })
+
+// console.log(store.getState());
+
+
+// // const recipe = {
+// //   name: "Spaghetti Bolognese",
+// //   ingredients: ["egg", "salt"],
+// // }
+
+// // const added = {
+// //   ...recipe,
+// //   ingredients: [...recipe.ingredients, "cream"]
 // // };
-// // const output = "(javascript)";
 
-// // const getTagValue = (obj) => obj.tag;
+// // const updated = {
+// //   ...recipe,
+// //   ingredients: recipe.ingredients.map(ingredient =>
+// //     ingredient === "egg" ? "egg white" : ingredient
+// //   )
+// // };
 
-// // const wrapInParentheses = (str) => `(${str})`;
-
-// // const toLowerCase = (str) => str.toLowerCase();
-
-
-// // const transform = pipe(getTagValue, wrapInParentheses, toLowerCase);
-
-// // const result = transform(input);
-
-// // console.log(result);
-
+// // const removed = {
+// //   ...recipe,
+// //   ingredients: recipe.ingredients.filter(ingredient => ingredient !== "egg")
+// // };
 // // // import {
-// // //   produce
-// // // } from 'immer';
+// // //   pipe,
+// // // } from 'lodash/fp';
 
-// // // let book = {
-// // //   title: "Harry Potter"
+// // // const input = {
+// // //   tag: "JAVASCRIPT"
 // // // };
+// // // const output = "(javascript)";
 
-// // // function publish(book) {
-// // //   return produce(book, draftBook => {
-// // //     draftBook.isPublished = true;
-// // //   });
-// // // }
+// // // const getTagValue = (obj) => obj.tag;
 
-// // // let updated = publish(book);
+// // // const wrapInParentheses = (str) => `(${str})`;
 
-// // // console.log(book);
-// // // console.log(updated);
+// // // const toLowerCase = (str) => str.toLowerCase();
+
+
+// // // const transform = pipe(getTagValue, wrapInParentheses, toLowerCase);
+
+// // // const result = transform(input);
+
+// // // console.log(result);
 
 // // // // import {
-// // // //   compose,
-// // // //   pipe
-// // // // } from 'lodash/fp';
+// // // //   produce
+// // // // } from 'immer';
 
-// // // // let input = "   JavaScript   ";
+// // // // let book = {
+// // // //   title: "Harry Potter"
+// // // // };
 
-// // // // let output = "<div>" + input.trim() + "</div>";
+// // // // function publish(book) {
+// // // //   return produce(book, draftBook => {
+// // // //     draftBook.isPublished = true;
+// // // //   });
+// // // // }
 
-// // // // // trim
-// // // // // wrapInDiv
+// // // // let updated = publish(book);
 
-// // // // const trim = str => str.trim();
-// // // // const wrap = type => str => `<${type}>${str}</${type}>`;
-// // // // const toLowerCase = str => str.toLowerCase();
+// // // // console.log(book);
+// // // // console.log(updated);
 
-// // // // // const result = wrapInDiv(toLowerCase(trim(input)));
+// // // // // import {
+// // // // //   compose,
+// // // // //   pipe
+// // // // // } from 'lodash/fp';
 
-// // // // // setTimeout(() => console.log("Hello"), 1000);
+// // // // // let input = "   JavaScript   ";
 
-// // // // // const transform = compose(wrapInDiv, toLowerCase, trim);
-// // // // const transform = pipe(trim, toLowerCase, wrap("span"));
+// // // // // let output = "<div>" + input.trim() + "</div>";
 
-// // // // console.log(transform(input));
+// // // // // // trim
+// // // // // // wrapInDiv
 
-// // // // // let numbers = [1, 2, 3];
+// // // // // const trim = str => str.trim();
+// // // // // const wrap = type => str => `<${type}>${str}</${type}>`;
+// // // // // const toLowerCase = str => str.toLowerCase();
 
-// // // // // numbers.map(number => number * 2);
+// // // // // // const result = wrapInDiv(toLowerCase(trim(input)));
 
-// // // // // function greet(fn) {
-// // // // //   console.log(fn());
-// // // // // }
+// // // // // // setTimeout(() => console.log("Hello"), 1000);
 
-// // // // // function sayHello() {
-// // // // //   return function () {
-// // // // //     return "Hello World!";
-// // // // //   };
-// // // // // }
+// // // // // // const transform = compose(wrapInDiv, toLowerCase, trim);
+// // // // // const transform = pipe(trim, toLowerCase, wrap("span"));
 
-// // // // // // let fn = sayHello;
-// // // // // // fn();
-// // // // // // sayHello();
+// // // // // console.log(transform(input));
 
-// // // // // // function greet(fnMessage) {
-// // // // // //   console.log(fnMessage());
+// // // // // // let numbers = [1, 2, 3];
+
+// // // // // // numbers.map(number => number * 2);
+
+// // // // // // function greet(fn) {
+// // // // // //   console.log(fn());
 // // // // // // }
 
-// // // // // // greet(sayHello);
+// // // // // // function sayHello() {
+// // // // // //   return function () {
+// // // // // //     return "Hello World!";
+// // // // // //   };
+// // // // // // }
 
-// // // // // let fn = sayHello();
-// // // // // let message = fn();
+// // // // // // // let fn = sayHello;
+// // // // // // // fn();
+// // // // // // // sayHello();
+
+// // // // // // // function greet(fnMessage) {
+// // // // // // //   console.log(fnMessage());
+// // // // // // // }
+
+// // // // // // // greet(sayHello);
+
+// // // // // // let fn = sayHello();
+// // // // // // let message = fn();
