@@ -1,21 +1,35 @@
 import configureStore from './store/configureStore';
+import { addBug } from './store/bugs';
+import {
+  loadBugs,
+  resolveBug,
+  assignBugToUser,
+} from './store/bugs';
 
 const store = configureStore();
 
-store.dispatch((dispatch, getState) => {
-  // Call an API
-  // Promise resolved => dispatch()
-  dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] });
-  console.log(getState());
-  // Promise rejected => dispatch(something else)
-});
+// store.dispatch((dispatch, getState) => {
+//   // Call an API
+//   // Promise resolved => dispatch()
+//   dispatch({ type: 'bugsReceived', bugs: [1, 2, 3] });
+//   console.log(getState());
+//   // Promise rejected => dispatch(something else)
+// });
 
-store.dispatch({
-  type: 'error',
-  payload: {
-    message: 'An error occured',
-  },
-})
+
+// UI Layer
+
+store.dispatch(loadBugs());
+
+setTimeout(() => store.dispatch(assignBugToUser(1, 4)), 2000)
+
+// store.dispatch(addBug({
+//   description: 'a',
+// }))
+
+// store.dispatch(loadBugs());
+
+// setTimeout(() => store.dispatch(loadBugs()), 2000);
 
 // import {
 //   bugAdded,
